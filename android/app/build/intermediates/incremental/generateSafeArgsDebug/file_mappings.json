@@ -1,0 +1,1 @@
+[{"navFile":"src\\main\\res\\navigation\\nav_graph.xml","javaFiles":["com.omkarcodes.movee.ui.home.fragments.HomeFragmentDirections","com.omkarcodes.movee.ui.detail.fragments.DetailFragmentArgs","com.omkarcodes.movee.ui.search.fragments.SearchFragmentDirections","com.omkarcodes.movee.ui.saved.fragments.SavedFragmentDirections"]}]
