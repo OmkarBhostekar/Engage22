@@ -1,3 +1,4 @@
+from cmath import log
 from fastapi import FastAPI, BackgroundTasks, File, Response, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pymongo import MongoClient
@@ -19,6 +20,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import os
 import tempfile
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 app = FastAPI()
@@ -51,6 +53,11 @@ def get_top_rated():
     res = get_highly_rated(ratings,movies)
     return res
 
+@app.get("/movie/content-recommendation")
+def get_top_rated(movieId):
+    res = getContentBasedRecommendation(int(movieId))
+    return res
+
 @app.get('/movie/genres')
 def get_genres():
     return allGenres
@@ -61,7 +68,7 @@ def weighted_rating(v,m,R,C):
     return ( (v / (v + m)) * R) + ( (m / (v + m)) * C )
 
 '''
-    Based on user ratings top rated movies with good count of ratings and highest avg ratings will be returned
+<============== top rated recommendations ==============>
 '''
 def get_highly_rated(rating_df, item_df):
     # pre processing
@@ -88,3 +95,40 @@ def get_highly_rated(rating_df, item_df):
     popular_movies = popular_movies.merge(movies,left_on='movieId',right_on='movieId')
 
     return Response(popular_movies.to_json(orient="records"), media_type="application/json")
+    
+'''
+<============== content based recommendations ==============>
+'''
+# create item-genre matrix
+item_genre_mat = movies[['movieId', 'genres']].copy()
+item_genre_mat['genres'] = item_genre_mat['genres'].str.lower().str.strip()
+
+# OHE the genres column
+for genre in all_genre:
+    item_genre_mat[genre] = np.where(item_genre_mat['genres'].str.contains(genre), 1, 0)
+item_genre_mat = item_genre_mat.drop(['genres'], axis=1)
+item_genre_mat = item_genre_mat.set_index('movieId')
+
+# compute similarity matix
+corr_mat = cosine_similarity(item_genre_mat)
+
+def top_k_items(item_id, top_k, corr_mat, map_name):
+    # sort correlation value ascendingly and select top_k item_id
+    top_items = corr_mat[item_id,:].argsort()[-top_k:][::-1] 
+    top_items = [map_name[e] for e in top_items] 
+
+    return top_items
+
+# get top-k similar items
+ind2name = {ind:name for ind,name in enumerate(item_genre_mat.index)}
+name2ind = {v:k for k,v in ind2name.items()}
+
+def getContentBasedRecommendation(movieId):
+    similar_items = top_k_items(name2ind[movieId],
+                            top_k = 10,
+                            corr_mat = corr_mat,
+                            map_name = ind2name)
+    if(movieId in similar_items):
+        similar_items.remove(int(movieId))
+    res = movies.loc[movies['movieId'].isin(similar_items)]
+    return Response(res.to_json(orient="records"), media_type="application/json")
