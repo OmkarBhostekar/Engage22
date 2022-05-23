@@ -28,8 +28,7 @@ app = FastAPI()
 ratings = pd.read_csv('model/ratings.csv')
 movies = pd.read_csv('model/movies.csv')
 tags = pd.read_csv('model/tags.csv')
-ids = pd.read_csv('model/links.csv')
-movies = movies.merge(ids,on='movieId')
+
 movies['genres'] = movies['genres'].apply(lambda x: x.replace('|',','))
 
 # extract the genre
