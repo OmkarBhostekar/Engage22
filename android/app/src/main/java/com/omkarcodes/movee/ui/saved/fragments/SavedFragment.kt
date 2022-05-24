@@ -29,13 +29,17 @@ class SavedFragment : Fragment(R.layout.fragment_saved), SavedAdapter.OnClickLis
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSavedBinding.bind(view)
 
-        savedViewModel.getSaved().observe(viewLifecycleOwner,{
-            binding.rvSaved.adapter = SavedAdapter(this,it)
+        savedViewModel.getSaved().observe(viewLifecycleOwner) {
+            binding.rvSaved.adapter = SavedAdapter(this, it)
             val swipeListener = object : ItemTouchHelper.SimpleCallback(
-                    ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-                    ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-            ){
-                override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+            ) {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
                     return true
                 }
 
@@ -45,7 +49,7 @@ class SavedFragment : Fragment(R.layout.fragment_saved), SavedAdapter.OnClickLis
             }
             val itemTouchHelper = ItemTouchHelper(swipeListener)
             itemTouchHelper.attachToRecyclerView(binding.rvSaved)
-        })
+        }
 
     }
 

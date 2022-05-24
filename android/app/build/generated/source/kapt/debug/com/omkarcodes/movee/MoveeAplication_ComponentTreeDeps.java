@@ -28,6 +28,7 @@ import hilt_aggregated_deps._com_omkarcodes_movee_ui_detail_fragments_DetailFrag
 import hilt_aggregated_deps._com_omkarcodes_movee_ui_home_HomeViewModel_HiltModules_BindsModule;
 import hilt_aggregated_deps._com_omkarcodes_movee_ui_home_HomeViewModel_HiltModules_KeyModule;
 import hilt_aggregated_deps._com_omkarcodes_movee_ui_home_fragments_HomeFragment_GeneratedInjector;
+import hilt_aggregated_deps._com_omkarcodes_movee_ui_recommendation_ForYouFragment_GeneratedInjector;
 import hilt_aggregated_deps._com_omkarcodes_movee_ui_saved_SavedViewModel_HiltModules_BindsModule;
 import hilt_aggregated_deps._com_omkarcodes_movee_ui_saved_SavedViewModel_HiltModules_KeyModule;
 import hilt_aggregated_deps._com_omkarcodes_movee_ui_saved_fragments_SavedFragment_GeneratedInjector;
@@ -89,21 +90,22 @@ import hilt_aggregated_deps._dagger_hilt_android_internal_modules_HiltWrapper_Ac
         _dagger_hilt_android_internal_managers_ViewComponentManager_ViewWithFragmentComponentBuilderEntryPoint.class,
         _dagger_hilt_android_internal_modules_ApplicationContextModule.class,
         _dagger_hilt_android_internal_modules_HiltWrapper_ActivityModule.class,
-        _com_omkarcodes_movee_di_AppModule.class,
         _com_omkarcodes_movee_MoveeAplication_GeneratedInjector.class,
-        _com_omkarcodes_movee_ui_detail_DetailViewModel_HiltModules_BindsModule.class,
-        _com_omkarcodes_movee_ui_detail_DetailViewModel_HiltModules_KeyModule.class,
-        _com_omkarcodes_movee_ui_detail_fragments_DetailFragment_GeneratedInjector.class,
         _com_omkarcodes_movee_ui_home_fragments_HomeFragment_GeneratedInjector.class,
         _com_omkarcodes_movee_ui_home_HomeViewModel_HiltModules_BindsModule.class,
         _com_omkarcodes_movee_ui_home_HomeViewModel_HiltModules_KeyModule.class,
         _com_omkarcodes_movee_ui_MainActivity_GeneratedInjector.class,
+        _com_omkarcodes_movee_ui_recommendation_ForYouFragment_GeneratedInjector.class,
         _com_omkarcodes_movee_ui_saved_fragments_SavedFragment_GeneratedInjector.class,
         _com_omkarcodes_movee_ui_saved_SavedViewModel_HiltModules_BindsModule.class,
         _com_omkarcodes_movee_ui_saved_SavedViewModel_HiltModules_KeyModule.class,
         _com_omkarcodes_movee_ui_search_fragments_SearchFragment_GeneratedInjector.class,
         _com_omkarcodes_movee_ui_search_SearchViewModel_HiltModules_BindsModule.class,
-        _com_omkarcodes_movee_ui_search_SearchViewModel_HiltModules_KeyModule.class
+        _com_omkarcodes_movee_ui_search_SearchViewModel_HiltModules_KeyModule.class,
+        _com_omkarcodes_movee_di_AppModule.class,
+        _com_omkarcodes_movee_ui_detail_fragments_DetailFragment_GeneratedInjector.class,
+        _com_omkarcodes_movee_ui_detail_DetailViewModel_HiltModules_BindsModule.class,
+        _com_omkarcodes_movee_ui_detail_DetailViewModel_HiltModules_KeyModule.class
     }
 )
 class MoveeAplication_ComponentTreeDeps {

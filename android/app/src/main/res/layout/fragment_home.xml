@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:isScrollContainer="false"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent">
         <ImageView
             android:layout_width="90dp"
@@ -48,7 +49,7 @@
                 android:textSize="17sp"
                 android:textColor="@color/headlineColor"
                 android:textStyle="bold"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:paddingHorizontal="12dp"
                 android:fontFamily="@font/poppins"
                 app:layout_constraintTop_toTopOf="parent"/>

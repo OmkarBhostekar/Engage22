@@ -14,5 +14,5 @@
 
     <color name="colorOnPrimary">#171B30</color>
     <color name="headlineColor">#fff</color>
-    <color name="cardColor">#efefef</color>
+    <color name="cardColor">#808080</color>
 </resources>

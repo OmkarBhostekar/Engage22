@@ -6,34 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabIndicatorFullWidth="false"
+        app:tabMode="scrollable"
+        app:tabRippleColor="@null"
+        app:tabTextAppearance="@style/MyCustomTextAppearance"
+        app:tabSelectedTextColor="@color/colorPrimary" />
+
     <fragment
         android:id="@+id/navHostFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout"
         app:navGraph="@navigation/nav_graph" />
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"/>
 
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        app:menu="@menu/menu_bottom_bar"
-        app:cornerRadius="24dp"
-        app:sideMargins="5dp"
-        app:iconSize="17dp"
-        app:textSize="14sp"
+        android:layout_marginHorizontal="5dp"
         android:layout_marginBottom="8dp"
         android:paddingHorizontal="8dp"
-        android:layout_marginHorizontal="5dp"
+        android:visibility="gone"
         app:backgroundColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:cornerRadius="24dp"
+        app:iconSize="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/menu_bottom_bar"
+        app:sideMargins="5dp"
+        app:textSize="14sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

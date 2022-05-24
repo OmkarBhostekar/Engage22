@@ -58,4 +58,7 @@
             android:id="@+id/action_savedFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/forYouFragment"
+        android:name="com.omkarcodes.movee.ui.recommendation.ForYouFragment" />
 </navigation>

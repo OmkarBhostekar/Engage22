@@ -37,11 +37,12 @@ class DetailFragment : Fragment(R.layout.fragment_detail){
         if (args.type == "tv"){
             detailViewModel.getTvDetail(args.id)
             detailViewModel.getCast("tv",args.id)
+            detailViewModel.getVideos("tv",args.id)
         }else{
             detailViewModel.getMovieDetail(args.id)
             detailViewModel.getCast("movie",args.id)
+            detailViewModel.getVideos("movie",args.id)
         }
-        detailViewModel.getVideos(args.id)
 
         binding.apply {
             btnBack.setOnClickListener {

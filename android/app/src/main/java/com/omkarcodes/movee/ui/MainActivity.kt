@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.google.android.material.tabs.TabLayout
 import com.omkarcodes.movee.R
 import com.omkarcodes.movee.comman.Constants
 import com.omkarcodes.movee.databinding.ActivityMainBinding
@@ -27,13 +28,43 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        navController = findNavController(R.id.navHostFragment)
+        binding.apply {
 
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            if (destination.id == R.id.detailFragment){
-                binding.bottomBar.visibility = View.GONE
-            }else
-                binding.bottomBar.visibility = View.VISIBLE
+            navController = findNavController(R.id.navHostFragment)
+
+            navController.addOnDestinationChangedListener { controller, destination, arguments ->
+                if (destination.id == R.id.detailFragment){
+                    tabLayout.visibility = View.GONE
+                }else
+                    tabLayout.visibility = View.VISIBLE
+                when(destination.id){
+                    R.id.homeFragment -> tabLayout.selectTab(tabLayout.getTabAt(0))
+                    R.id.forYouFragment -> tabLayout.selectTab(tabLayout.getTabAt(1))
+                    R.id.savedFragment -> tabLayout.selectTab(tabLayout.getTabAt(2))
+                    else -> Unit
+                }
+            }
+
+            tabLayout.addTab(tabLayout.newTab().apply { text = "Home" })
+            tabLayout.addTab(tabLayout.newTab().apply { text = "For You" })
+            tabLayout.addTab(tabLayout.newTab().apply { text = "Watchlist" })
+
+            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    when(tab?.position){
+                        0 -> navController.navigate(R.id.homeFragment)
+                        1 -> navController.navigate(R.id.forYouFragment)
+                        else -> navController.navigate(R.id.savedFragment)
+                    }
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                }
+            })
+
         }
     }
 

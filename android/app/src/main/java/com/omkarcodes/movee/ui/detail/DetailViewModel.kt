@@ -51,9 +51,9 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    fun getVideos(id: Int) = viewModelScope.launch {
+    fun getVideos(type: String,id: Int) = viewModelScope.launch {
         try {
-            val response = repository.getVideos(id)
+            val response = repository.getVideos(type,id)
             if (response.isSuccessful){
                 val list = mutableListOf<Result>()
                 response.body()?.results?.forEach {  result ->

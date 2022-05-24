@@ -34,8 +34,9 @@ interface DetailApi {
             @Query("language") language: String = "en-US"
     ): Response<CastResponse>
 
-    @GET("/3/movie/{id}/videos")
+    @GET("/3/{type}/{id}/videos")
     suspend fun getVideos(
+        @Path("type") type: String = "movie",
         @Path("id") id: Int,
         @Query("api_key") apiKey: String = Constants.API_KEY,
     ): Response<MovieVideos>

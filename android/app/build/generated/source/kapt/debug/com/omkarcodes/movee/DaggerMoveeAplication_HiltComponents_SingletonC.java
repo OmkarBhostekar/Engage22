@@ -29,6 +29,7 @@ import com.omkarcodes.movee.ui.home.HomeViewModel;
 import com.omkarcodes.movee.ui.home.HomeViewModel_HiltModules_KeyModule_ProvideFactory;
 import com.omkarcodes.movee.ui.home.fragments.HomeFragment;
 import com.omkarcodes.movee.ui.home.fragments.HomeFragment_MembersInjector;
+import com.omkarcodes.movee.ui.recommendation.ForYouFragment;
 import com.omkarcodes.movee.ui.saved.MoveeDao;
 import com.omkarcodes.movee.ui.saved.SavedViewModel;
 import com.omkarcodes.movee.ui.saved.SavedViewModel_HiltModules_KeyModule_ProvideFactory;
@@ -374,6 +375,10 @@ public final class DaggerMoveeAplication_HiltComponents_SingletonC extends Movee
     @Override
     public void injectHomeFragment(HomeFragment homeFragment) {
       injectHomeFragment2(homeFragment);
+    }
+
+    @Override
+    public void injectForYouFragment(ForYouFragment forYouFragment) {
     }
 
     @Override

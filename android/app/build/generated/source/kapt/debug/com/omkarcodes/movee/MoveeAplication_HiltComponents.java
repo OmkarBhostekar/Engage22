@@ -7,6 +7,7 @@ import com.omkarcodes.movee.ui.detail.DetailViewModel_HiltModules;
 import com.omkarcodes.movee.ui.detail.fragments.DetailFragment_GeneratedInjector;
 import com.omkarcodes.movee.ui.home.HomeViewModel_HiltModules;
 import com.omkarcodes.movee.ui.home.fragments.HomeFragment_GeneratedInjector;
+import com.omkarcodes.movee.ui.recommendation.ForYouFragment_GeneratedInjector;
 import com.omkarcodes.movee.ui.saved.SavedViewModel_HiltModules;
 import com.omkarcodes.movee.ui.saved.fragments.SavedFragment_GeneratedInjector;
 import com.omkarcodes.movee.ui.search.SearchViewModel_HiltModules;
@@ -225,6 +226,7 @@ public final class MoveeAplication_HiltComponents {
   @FragmentScoped
   public abstract static class FragmentC implements DetailFragment_GeneratedInjector,
       HomeFragment_GeneratedInjector,
+      ForYouFragment_GeneratedInjector,
       SavedFragment_GeneratedInjector,
       SearchFragment_GeneratedInjector,
       FragmentComponent,
