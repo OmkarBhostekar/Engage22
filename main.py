@@ -1,25 +1,8 @@
-from cmath import log
-from fastapi import FastAPI, BackgroundTasks, File, Response, UploadFile
-from fastapi.middleware.cors import CORSMiddleware
-from pymongo import MongoClient
-import pandas as pd
-import json
-import uuid
-from bson import json_util
-from typing import List
-import requests
-import numpy as np
-import os
-import time
+from fastapi import FastAPI, Response
 import pandas as pd
 import numpy as np
-from zipfile import ZipFile
-import tensorflow as tf
-from tensorflow import keras
-from pathlib import Path
-import matplotlib.pyplot as plt
-import os
-import tempfile
+import pandas as pd
+import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
 
