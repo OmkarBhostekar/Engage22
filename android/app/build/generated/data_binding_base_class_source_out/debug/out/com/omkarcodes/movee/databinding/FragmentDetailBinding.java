@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.omkarcodes.movee.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -29,10 +30,16 @@ public final class FragmentDetailBinding implements ViewBinding {
   public final CardView btnSave;
 
   @NonNull
+  public final CardView card;
+
+  @NonNull
   public final CardView cardView;
 
   @NonNull
   public final LayoutCastBinding cast;
+
+  @NonNull
+  public final FloatingActionButton fabPlay;
 
   @NonNull
   public final ImageView ivBackdrop;
@@ -53,14 +60,17 @@ public final class FragmentDetailBinding implements ViewBinding {
   public final TextView tvTitle;
 
   private FragmentDetailBinding(@NonNull ConstraintLayout rootView, @NonNull CardView btnBack,
-      @NonNull CardView btnSave, @NonNull CardView cardView, @NonNull LayoutCastBinding cast,
+      @NonNull CardView btnSave, @NonNull CardView card, @NonNull CardView cardView,
+      @NonNull LayoutCastBinding cast, @NonNull FloatingActionButton fabPlay,
       @NonNull ImageView ivBackdrop, @NonNull ImageView ivPoster, @NonNull RatingBar ratingBar,
       @NonNull TextView tvGenre, @NonNull TextView tvOverview, @NonNull TextView tvTitle) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnSave = btnSave;
+    this.card = card;
     this.cardView = cardView;
     this.cast = cast;
+    this.fabPlay = fabPlay;
     this.ivBackdrop = ivBackdrop;
     this.ivPoster = ivPoster;
     this.ratingBar = ratingBar;
@@ -108,6 +118,12 @@ public final class FragmentDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.card;
+      CardView card = ViewBindings.findChildViewById(rootView, id);
+      if (card == null) {
+        break missingId;
+      }
+
       id = R.id.cardView;
       CardView cardView = ViewBindings.findChildViewById(rootView, id);
       if (cardView == null) {
@@ -120,6 +136,12 @@ public final class FragmentDetailBinding implements ViewBinding {
         break missingId;
       }
       LayoutCastBinding binding_cast = LayoutCastBinding.bind(cast);
+
+      id = R.id.fabPlay;
+      FloatingActionButton fabPlay = ViewBindings.findChildViewById(rootView, id);
+      if (fabPlay == null) {
+        break missingId;
+      }
 
       id = R.id.ivBackdrop;
       ImageView ivBackdrop = ViewBindings.findChildViewById(rootView, id);
@@ -157,8 +179,9 @@ public final class FragmentDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentDetailBinding((ConstraintLayout) rootView, btnBack, btnSave, cardView,
-          binding_cast, ivBackdrop, ivPoster, ratingBar, tvGenre, tvOverview, tvTitle);
+      return new FragmentDetailBinding((ConstraintLayout) rootView, btnBack, btnSave, card,
+          cardView, binding_cast, fabPlay, ivBackdrop, ivPoster, ratingBar, tvGenre, tvOverview,
+          tvTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

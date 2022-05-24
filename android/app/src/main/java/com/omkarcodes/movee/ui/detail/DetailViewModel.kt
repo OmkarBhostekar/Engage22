@@ -8,6 +8,7 @@ import com.omkarcodes.movee.models.Resource
 import com.omkarcodes.movee.ui.detail.models.movie.MovieDetail
 import com.omkarcodes.movee.ui.detail.models.tv.Cast
 import com.omkarcodes.movee.ui.detail.models.tv.TvDetail
+import com.omkarcodes.movee.ui.detail.models.video.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,6 +22,7 @@ class DetailViewModel @Inject constructor(
     val movieDetail = MutableLiveData<Resource<MovieDetail>>(Resource.Empty())
     val tvDetail = MutableLiveData<Resource<TvDetail>>(Resource.Empty())
     val cast = MutableLiveData<Resource<List<Cast>>>(Resource.Empty())
+    val videos = MutableLiveData<Resource<List<Result>>>(Resource.Empty())
 
     fun getMovieDetail(movieId: Int) = viewModelScope.launch {
         try{
@@ -45,6 +47,23 @@ class DetailViewModel @Inject constructor(
             val response = repository.getCredits(type,id)
             if (response.isSuccessful)
                 cast.postValue(Resource.Success(response.body()!!.cast))
+        }catch(e: Exception){
+        }
+    }
+
+    fun getVideos(id: Int) = viewModelScope.launch {
+        try {
+            val response = repository.getVideos(id)
+            if (response.isSuccessful){
+                val list = mutableListOf<Result>()
+                response.body()?.results?.forEach {  result ->
+                    if(result.type?.lowercase() == "trailer"
+                        && result.site?.lowercase() == "youtube" && result.official){
+                        list.add(result)
+                    }
+                }
+                videos.postValue(Resource.Success(list))
+            }
         }catch(e: Exception){
         }
     }

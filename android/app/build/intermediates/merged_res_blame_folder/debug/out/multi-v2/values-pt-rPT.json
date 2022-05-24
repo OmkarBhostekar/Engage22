@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-pt-rPT\\values-pt-rPT.xml",
+            "outputFile": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-pt-rPT\\values-pt-rPT.xml",
             "map": [
                 {
                     "source": "C:\\Users\\otbho\\.gradle\\caches\\transforms-3\\53085ce8c9ab327578f0f95bed263ee6\\transformed\\core-1.7.0\\res\\values-pt-rPT\\values-pt-rPT.xml",

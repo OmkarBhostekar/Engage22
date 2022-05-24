@@ -1,6 +1,7 @@
 package com.omkarcodes.movee.ui.detail.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,9 +14,12 @@ import com.omkarcodes.movee.comman.toGenres
 import com.omkarcodes.movee.databinding.FragmentDetailBinding
 import com.omkarcodes.movee.models.Movie
 import com.omkarcodes.movee.models.Resource
+import com.omkarcodes.movee.ui.MainActivity
 import com.omkarcodes.movee.ui.detail.DetailViewModel
 import com.omkarcodes.movee.ui.detail.adapters.CastAdapter
+import com.omkarcodes.movee.ui.detail.models.video.Result
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.fragment_detail){
@@ -37,6 +41,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail){
             detailViewModel.getMovieDetail(args.id)
             detailViewModel.getCast("movie",args.id)
         }
+        detailViewModel.getVideos(args.id)
 
         binding.apply {
             btnBack.setOnClickListener {
@@ -106,6 +111,18 @@ class DetailFragment : Fragment(R.layout.fragment_detail){
             cast.observe(viewLifecycleOwner) {
                 if (it is Resource.Success) {
                     binding.cast.rvCast.adapter = CastAdapter(it.data!!)
+                }
+            }
+            videos.observe(viewLifecycleOwner) {
+                it.data?.let { data ->
+                    if (data.isNotEmpty()){
+                        binding.apply {
+                            fabPlay.visibility = View.VISIBLE
+                            fabPlay.setOnClickListener {
+                                (activity as MainActivity).playVideo(data as ArrayList<Result>)
+                            }
+                        }
+                    }
                 }
             }
         }

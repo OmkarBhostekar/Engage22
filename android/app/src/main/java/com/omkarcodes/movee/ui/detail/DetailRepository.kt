@@ -14,6 +14,8 @@ class DetailRepository @Inject constructor(
 
     suspend fun getCredits(type:String, id:Int) = api.getCredits(type, id)
 
+    suspend fun getVideos( id:Int) = api.getVideos(id)
+
     fun insertMovie(movie: Movie) = dao.insertMovie(movie)
 
 }

@@ -1,50 +1,58 @@
 [
     {
-        "merged": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_detail.xml",
-        "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\layout\\fragment_detail.xml"
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_movie.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\item_movie.xml"
     },
     {
-        "merged": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_cast.xml",
-        "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\layout\\item_cast.xml"
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_home.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\fragment_home.xml"
     },
     {
-        "merged": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_movie_banner.xml",
-        "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\layout\\fragment_movie_banner.xml"
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_cast.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\item_cast.xml"
     },
     {
-        "merged": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_search.xml",
-        "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\layout\\fragment_search.xml"
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_saved.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\fragment_saved.xml"
     },
     {
-        "merged": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_movie.xml",
-        "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\layout\\item_movie.xml"
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_search.xml",
-        "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\layout\\item_search.xml"
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_video_player.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\fragment_video_player.xml"
     },
     {
-        "merged": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_saved.xml",
-        "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\layout\\fragment_saved.xml"
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_movie_banner.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\fragment_movie_banner.xml"
     },
     {
-        "merged": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
-        "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_search.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\item_search.xml"
     },
     {
-        "merged": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_big_poster_movie.xml",
-        "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\layout\\item_big_poster_movie.xml"
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_section.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\item_section.xml"
     },
     {
-        "merged": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_home.xml",
-        "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\layout\\fragment_home.xml"
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_search.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\fragment_search.xml"
     },
     {
-        "merged": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_section.xml",
-        "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\layout\\item_section.xml"
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_detail.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\fragment_detail.xml"
     },
     {
-        "merged": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\layout_cast.xml",
-        "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\layout\\layout_cast.xml"
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_video.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\item_video.xml"
+    },
+    {
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\layout_cast.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\layout_cast.xml"
+    },
+    {
+        "merged": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_big_poster_movie.xml",
+        "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\layout\\item_big_poster_movie.xml"
     }
 ]

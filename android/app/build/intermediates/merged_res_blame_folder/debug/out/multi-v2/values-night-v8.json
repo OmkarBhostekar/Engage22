@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\values-night\\colors.xml",
+                    "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\values-night\\colors.xml",
                     "from": {
                         "startLines": "7,16,14,10,12,11,15,2,3,4,5,6,8",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -18,25 +18,6 @@
                         "startOffsets": "100,142,186,235,282,333,385,430,477,524,571,616,661",
                         "endColumns": "41,43,48,46,50,51,44,46,46,46,44,44,41",
                         "endOffsets": "137,181,230,277,328,380,425,472,519,566,611,656,698"
-                    }
-                },
-                {
-                    "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\values-night\\themes.xml",
-                    "from": {
-                        "startLines": "16,2,20",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "912,100,1153",
-                        "endLines": "19,15,29",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "1148,907,1644"
-                    },
-                    "to": {
-                        "startLines": "15,50,73",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "703,4230,6130",
-                        "endLines": "18,63,81",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "939,5035,6613"
                     }
                 },
                 {
@@ -71,6 +52,25 @@
                         "startOffsets": "944,1014,1098,1182,1278,1380,1482,5040",
                         "endColumns": "69,83,83,95,101,101,93,88",
                         "endOffsets": "1009,1093,1177,1273,1375,1477,1571,5124"
+                    }
+                },
+                {
+                    "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\values-night\\themes.xml",
+                    "from": {
+                        "startLines": "16,2,20",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "912,100,1153",
+                        "endLines": "19,15,29",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "1148,907,1644"
+                    },
+                    "to": {
+                        "startLines": "15,50,73",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "703,4230,6130",
+                        "endLines": "18,63,81",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "939,5035,6613"
                     }
                 }
             ]

@@ -59,27 +59,31 @@ class HomeFragment : Fragment(R.layout.fragment_home),MoviesAdapter.OnMovieClick
 
     private fun initObservers() {
         viewModel.apply {
-            netflixOriginals.observe(viewLifecycleOwner,{
-                if (it is Resource.Success){
-                    binding.rvBigPosters.adapter = BigPosterMoviesAdapter(it.data!!,this@HomeFragment)
+            netflixOriginals.observe(viewLifecycleOwner) {
+                if (it is Resource.Success) {
+                    binding.rvBigPosters.adapter =
+                        BigPosterMoviesAdapter(it.data!!, this@HomeFragment)
                 }
-            })
-            popularMovies.observe(viewLifecycleOwner,{
+            }
+            popularMovies.observe(viewLifecycleOwner) {
                 if (it is Resource.Success)
-                    binding.rvPopularMovies.adapter = MoviesAdapter(it.data!!,this@HomeFragment,"movie")
-            })
-            nowPlayingMovies.observe(viewLifecycleOwner,{
+                    binding.rvPopularMovies.adapter =
+                        MoviesAdapter(it.data!!, this@HomeFragment, "movie")
+            }
+            nowPlayingMovies.observe(viewLifecycleOwner) {
                 if (it is Resource.Success)
-                    binding.rvNowPlayingMovies.adapter = MoviesAdapter(it.data!!,this@HomeFragment,"movie")
-            })
-            popularTvShows.observe(viewLifecycleOwner,{
+                    binding.rvNowPlayingMovies.adapter =
+                        MoviesAdapter(it.data!!, this@HomeFragment, "movie")
+            }
+            popularTvShows.observe(viewLifecycleOwner) {
                 if (it is Resource.Success)
-                    binding.rvTvShow.adapter = MoviesAdapter(it.data!!,this@HomeFragment,"tv")
-            })
-            mcuMovies.observe(viewLifecycleOwner,{
+                    binding.rvTvShow.adapter = MoviesAdapter(it.data!!, this@HomeFragment, "tv")
+            }
+            mcuMovies.observe(viewLifecycleOwner) {
                 if (it is Resource.Success)
-                    binding.rvMcuMovies.adapter = MoviesAdapter(it.data!!,this@HomeFragment,"movie")
-            })
+                    binding.rvMcuMovies.adapter =
+                        MoviesAdapter(it.data!!, this@HomeFragment, "movie")
+            }
         }
     }
 

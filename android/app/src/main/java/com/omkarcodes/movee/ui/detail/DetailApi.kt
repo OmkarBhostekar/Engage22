@@ -4,6 +4,7 @@ import com.omkarcodes.movee.comman.Constants
 import com.omkarcodes.movee.ui.detail.models.movie.MovieDetail
 import com.omkarcodes.movee.ui.detail.models.tv.CastResponse
 import com.omkarcodes.movee.ui.detail.models.tv.TvDetail
+import com.omkarcodes.movee.ui.detail.models.video.MovieVideos
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -32,5 +33,11 @@ interface DetailApi {
             @Query("api_key") apiKey: String = Constants.API_KEY,
             @Query("language") language: String = "en-US"
     ): Response<CastResponse>
+
+    @GET("/3/movie/{id}/videos")
+    suspend fun getVideos(
+        @Path("id") id: Int,
+        @Query("api_key") apiKey: String = Constants.API_KEY,
+    ): Response<MovieVideos>
 
 }

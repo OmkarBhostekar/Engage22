@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-lo\\values-lo.xml",
+            "outputFile": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-lo\\values-lo.xml",
             "map": [
                 {
                     "source": "C:\\Users\\otbho\\.gradle\\caches\\transforms-3\\53085ce8c9ab327578f0f95bed263ee6\\transformed\\core-1.7.0\\res\\values-lo\\values-lo.xml",

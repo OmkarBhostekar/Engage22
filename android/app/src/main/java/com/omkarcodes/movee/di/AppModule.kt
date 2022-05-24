@@ -2,6 +2,7 @@ package com.omkarcodes.movee.di
 
 import android.content.Context
 import androidx.room.Room
+import com.omkarcodes.movee.comman.Constants
 import com.omkarcodes.movee.data.MoveeDatabase
 import com.omkarcodes.movee.ui.detail.DetailApi
 import com.omkarcodes.movee.ui.home.HomeApi
@@ -30,7 +31,7 @@ object AppModule {
     fun provideRetrofit2(client: OkHttpClient) : Retrofit = Retrofit.Builder()
         .client(client)
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl("https://api.themoviedb.org/")
+        .baseUrl(Constants.BASE_URL)
         .build()
 
     @Provides

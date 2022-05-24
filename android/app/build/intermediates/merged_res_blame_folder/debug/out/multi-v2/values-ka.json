@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ka\\values-ka.xml",
+            "outputFile": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ka\\values-ka.xml",
             "map": [
                 {
                     "source": "C:\\Users\\otbho\\.gradle\\caches\\transforms-3\\0a1c6f0ea77bb96ab6629920fa2f1322\\transformed\\navigation-ui-2.4.2\\res\\values-ka\\values-ka.xml",

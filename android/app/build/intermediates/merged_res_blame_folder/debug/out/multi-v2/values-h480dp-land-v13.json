@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-h480dp-land-v13\\values-h480dp-land-v13.xml",
+            "outputFile": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-h480dp-land-v13\\values-h480dp-land-v13.xml",
             "map": [
                 {
                     "source": "C:\\Users\\otbho\\.gradle\\caches\\transforms-3\\47bc929d2eb0477ab0587936ba139b46\\transformed\\material-1.6.0\\res\\values-h480dp-land-v13\\values-h480dp-land-v13.xml",

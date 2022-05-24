@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Development\\Engage\\engage-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "D:\\Development\\Engage\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\otbho\\.gradle\\caches\\transforms-3\\8eb121d06d1c67f425320b830d0c54a8\\transformed\\navigation-fragment-2.4.2\\res\\values\\values.xml",
@@ -59,6 +59,25 @@
                     }
                 },
                 {
+                    "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\values\\preloaded_fonts.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "188"
+                    },
+                    "to": {
+                        "startLines": "16",
+                        "startColumns": "4",
+                        "startOffsets": "3667",
+                        "endLines": "19",
+                        "endColumns": "12",
+                        "endOffsets": "3800"
+                    }
+                },
+                {
                     "source": "C:\\Users\\otbho\\.gradle\\caches\\transforms-3\\ba659922abb7b4bba76a30453bdde995\\transformed\\jetified-appcompat-resources-1.4.1\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,29,36,47,74",
@@ -75,23 +94,6 @@
                         "endLines": "8249,8256,8267,12058,12063",
                         "endColumns": "24,24,24,24,24",
                         "endOffsets": "556781,557166,557763,750600,750870"
-                    }
-                },
-                {
-                    "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "16",
-                        "endColumns": "42",
-                        "endOffsets": "54"
-                    },
-                    "to": {
-                        "startLines": "1638",
-                        "startColumns": "4",
-                        "startOffsets": "102528",
-                        "endColumns": "42",
-                        "endOffsets": "102566"
                     }
                 },
                 {
@@ -152,6 +154,40 @@
                     }
                 },
                 {
+                    "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\values\\colors.xml",
+                    "from": {
+                        "startLines": "7,17,14,10,12,11,15,2,3,4,5,6,8",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "286,617,522,371,470,418,571,55,102,149,196,241,328",
+                        "endColumns": "41,43,48,46,50,51,44,46,46,46,44,44,41",
+                        "endOffsets": "323,656,566,413,516,465,611,97,144,191,236,281,365"
+                    },
+                    "to": {
+                        "startLines": "599,608,613,614,615,616,660,829,830,831,842,843,847",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "32787,33470,33763,33812,33859,33910,36931,49133,49180,49227,49971,50016,50224",
+                        "endColumns": "41,43,48,46,50,51,44,46,46,46,44,44,41",
+                        "endOffsets": "32824,33509,33807,33854,33905,33957,36971,49175,49222,49269,50011,50056,50261"
+                    }
+                },
+                {
+                    "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "16",
+                        "endColumns": "42",
+                        "endOffsets": "54"
+                    },
+                    "to": {
+                        "startLines": "1638",
+                        "startColumns": "4",
+                        "startOffsets": "102528",
+                        "endColumns": "42",
+                        "endOffsets": "102566"
+                    }
+                },
+                {
                     "source": "C:\\Users\\otbho\\.gradle\\caches\\transforms-3\\ccb9b124853613b34446a280edbe7a33\\transformed\\cardview-1.0.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,35,36,37,38,45,47,50,7",
@@ -185,6 +221,25 @@
                         "startOffsets": "96845",
                         "endColumns": "49",
                         "endOffsets": "96890"
+                    }
+                },
+                {
+                    "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\values\\themes.xml",
+                    "from": {
+                        "startLines": "17,2,21",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "917,100,1158",
+                        "endLines": "20,15,30",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "1153,907,1649"
+                    },
+                    "to": {
+                        "startLines": "5255,5850,8068",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "357236,399598,546299",
+                        "endLines": "5258,5863,8076",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "357472,400403,546782"
                     }
                 },
                 {
@@ -370,42 +425,6 @@
                     }
                 },
                 {
-                    "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\values\\themes.xml",
-                    "from": {
-                        "startLines": "17,2,21",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "917,100,1158",
-                        "endLines": "20,15,30",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "1153,907,1649"
-                    },
-                    "to": {
-                        "startLines": "5255,5850,8068",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "357236,399598,546299",
-                        "endLines": "5258,5863,8076",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "357472,400403,546782"
-                    }
-                },
-                {
-                    "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\values\\colors.xml",
-                    "from": {
-                        "startLines": "7,17,14,10,12,11,15,2,3,4,5,6,8",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "286,617,522,371,470,418,571,55,102,149,196,241,328",
-                        "endColumns": "41,43,48,46,50,51,44,46,46,46,44,44,41",
-                        "endOffsets": "323,656,566,413,516,465,611,97,144,191,236,281,365"
-                    },
-                    "to": {
-                        "startLines": "599,608,613,614,615,616,660,829,830,831,842,843,847",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "32787,33470,33763,33812,33859,33910,36931,49133,49180,49227,49971,50016,50224",
-                        "endColumns": "41,43,48,46,50,51,44,46,46,46,44,44,41",
-                        "endOffsets": "32824,33509,33807,33854,33905,33957,36971,49175,49222,49269,50011,50056,50261"
-                    }
-                },
-                {
                     "source": "C:\\Users\\otbho\\.gradle\\caches\\transforms-3\\64fe45ae7b93e948087a61b19f544b33\\transformed\\jetified-viewpager2-1.0.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -422,25 +441,6 @@
                         "endLines": "12774",
                         "endColumns": "24",
                         "endOffsets": "789229"
-                    }
-                },
-                {
-                    "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\values\\font_certs.xml",
-                    "from": {
-                        "startLines": "2,6,11",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,257,1982",
-                        "endLines": "5,10,15",
-                        "endColumns": "12,19,19",
-                        "endOffsets": "252,1977,3567"
-                    },
-                    "to": {
-                        "startLines": "2,6,11",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "150,352,2077",
-                        "endLines": "5,10,15",
-                        "endColumns": "12,19,19",
-                        "endOffsets": "347,2072,3662"
                     }
                 },
                 {
@@ -499,22 +499,22 @@
                     }
                 },
                 {
-                    "source": "D:\\Development\\Engage\\engage-android\\app\\src\\main\\res\\values\\preloaded_fonts.xml",
+                    "source": "D:\\Development\\Engage\\android\\app\\src\\main\\res\\values\\font_certs.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "5",
-                        "endColumns": "12",
-                        "endOffsets": "188"
+                        "startLines": "2,6,11",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,257,1982",
+                        "endLines": "5,10,15",
+                        "endColumns": "12,19,19",
+                        "endOffsets": "252,1977,3567"
                     },
                     "to": {
-                        "startLines": "16",
-                        "startColumns": "4",
-                        "startOffsets": "3667",
-                        "endLines": "19",
-                        "endColumns": "12",
-                        "endOffsets": "3800"
+                        "startLines": "2,6,11",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "150,352,2077",
+                        "endLines": "5,10,15",
+                        "endColumns": "12,19,19",
+                        "endOffsets": "347,2072,3662"
                     }
                 },
                 {

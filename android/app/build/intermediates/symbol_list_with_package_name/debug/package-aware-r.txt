@@ -2549,6 +2549,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_play
 drawable ic_search
 drawable ic_ve
 drawable logo
@@ -2808,6 +2809,7 @@ id etSearch
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id fabPlay
 id fade
 id fill
 id fill_horizontal
@@ -2823,6 +2825,7 @@ id flip
 id floating
 id forever
 id fragment_container_view_tag
+id frameLayout
 id frost
 id fullscreen_header
 id ghost_view
@@ -2862,6 +2865,7 @@ id item_touch_helper_previous_elevation
 id ivBackdrop
 id ivPoster
 id ivProfile
+id ivThumbnail
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -2998,6 +3002,7 @@ id rvPopularMovies
 id rvSaved
 id rvSearch
 id rvTvShow
+id rvVideos
 id save_non_transition_alpha
 id save_overlay_view
 id savedFragment
@@ -3147,6 +3152,7 @@ id wrap_content
 id wrap_content_constrained
 id x_left
 id x_right
+id ytPlayer
 id zero_corner_chip
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
@@ -3263,11 +3269,13 @@ layout fragment_home
 layout fragment_movie_banner
 layout fragment_saved
 layout fragment_search
+layout fragment_video_player
 layout item_big_poster_movie
 layout item_cast
 layout item_movie
 layout item_search
 layout item_section
+layout item_video
 layout layout_cast
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
