@@ -1,38 +1,24 @@
 from fastapi import FastAPI, Response
 import pandas as pd
-import numpy as np
 import pandas as pd
 import numpy as np
+import os
 from sklearn.metrics.pairwise import cosine_similarity
+import pickle
 
+movies = pd.read_csv('model/movies.csv')
 
 app = FastAPI()
 
-ratings = pd.read_csv('model/ratings.csv')
-movies = pd.read_csv('model/movies.csv')
-tags = pd.read_csv('model/tags.csv')
-
-movies['genres'] = movies['genres'].apply(lambda x: x.replace('|',','))
-
-# extract the genre
-genre = movies['genres'].str.split(",", expand=True)
-
-# get all possible genre
-all_genre = set()
-for c in genre.columns:
-    distinct_genre = genre[c].str.lower().str.strip().unique()
-    all_genre.update(distinct_genre)
-all_genre.remove(None)
-all_genre.remove('(no genres listed)')
-allGenres = []
-for i in all_genre:
-    allGenres.append(i)
+f = open('model/genre', 'rb')
+allGenres = pickle.load(f)
+f.close()
 
 
 # Urls
 @app.get("/movie/top-rated")
 def get_top_rated():
-    res = get_highly_rated(ratings,movies)
+    res = get_highly_rated()
     return res
 
 @app.get("/movie/content-recommendation")
@@ -46,53 +32,27 @@ def get_genres():
 
 # Helper Functions
 
-def weighted_rating(v,m,R,C):
-    return ( (v / (v + m)) * R) + ( (m / (v + m)) * C )
-
 '''
 <============== top rated recommendations ==============>
 '''
-def get_highly_rated(rating_df, item_df):
-    # pre processing
-    vote_count = (
-        rating_df
-        .groupby('movieId',as_index=False)
-        .agg( {'userId':'count', 'rating':'mean'} )
-        )
-    vote_count.columns = ['movieId', 'vote_count', 'avg_rating']
-    
-    # calcuate input parameters
-    C = np.mean(vote_count['avg_rating'])
-    m = np.percentile(vote_count['vote_count'], 70)
-    vote_count = vote_count[vote_count['vote_count'] >= m]
-    R = vote_count['avg_rating']
-    v = vote_count['vote_count']
-    vote_count['weighted_rating'] = weighted_rating(v,m,R,C)
-    
-    # post processing
-    vote_count = vote_count.merge(item_df, on = ['movieId'], how = 'left')
-    popular_movies = vote_count.loc[:,['movieId', 'vote_count', 'avg_rating', 'weighted_rating']]
-    popular_movies = popular_movies.sort_values('weighted_rating',ascending=False)
-    popular_movies = popular_movies.head(10)
-    popular_movies = popular_movies.merge(movies,left_on='movieId',right_on='movieId')
 
+f = open('model/top_rated', 'rb')
+popular_movies = pickle.load(f)
+f.close()
+
+def get_highly_rated():
     return Response(popular_movies.to_json(orient="records"), media_type="application/json")
     
 '''
 <============== content based recommendations ==============>
 '''
-# create item-genre matrix
-item_genre_mat = movies[['movieId', 'genres']].copy()
-item_genre_mat['genres'] = item_genre_mat['genres'].str.lower().str.strip()
 
-# OHE the genres column
-for genre in all_genre:
-    item_genre_mat[genre] = np.where(item_genre_mat['genres'].str.contains(genre), 1, 0)
-item_genre_mat = item_genre_mat.drop(['genres'], axis=1)
-item_genre_mat = item_genre_mat.set_index('movieId')
-
-# compute similarity matix
-corr_mat = cosine_similarity(item_genre_mat)
+r = open('model/item_genre_mat', 'rb')
+item_genre_mat = pickle.load(r)
+r.close()
+r2 = open('model/corr_mat', 'rb')
+corr_mat = pickle.load(r2)
+r2.close()
 
 def top_k_items(item_id, top_k, corr_mat, map_name):
     # sort correlation value ascendingly and select top_k item_id
