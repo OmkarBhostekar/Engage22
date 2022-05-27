@@ -9,6 +9,7 @@ import com.omkarcodes.movee.ui.detail.models.movie.MovieDetail
 import com.omkarcodes.movee.ui.detail.models.tv.Cast
 import com.omkarcodes.movee.ui.detail.models.tv.TvDetail
 import com.omkarcodes.movee.ui.detail.models.video.Result
+import com.omkarcodes.movee.ui.recommendation.models.RecMovie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,13 +17,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val repository: DetailRepository
+    private val repository: DetailRepository,
 ) : ViewModel(){
 
     val movieDetail = MutableLiveData<Resource<MovieDetail>>(Resource.Empty())
     val tvDetail = MutableLiveData<Resource<TvDetail>>(Resource.Empty())
     val cast = MutableLiveData<Resource<List<Cast>>>(Resource.Empty())
     val videos = MutableLiveData<Resource<List<Result>>>(Resource.Empty())
+    val recom = MutableLiveData<Resource<List<RecMovie>>>(Resource.Empty())
+    val tmdbRecom = MutableLiveData<Resource<List<com.omkarcodes.movee.ui.detail.models.Result>>>(Resource.Empty())
 
     fun getMovieDetail(movieId: Int) = viewModelScope.launch {
         try{
@@ -65,6 +68,34 @@ class DetailViewModel @Inject constructor(
                 videos.postValue(Resource.Success(list))
             }
         }catch(e: Exception){
+        }
+    }
+
+    fun getMyRecommendation(type: String,id: Int) = viewModelScope.launch {
+        if(type == "tv")
+            getTmdbRecom(type,id)
+        else{
+            try {
+                val response = repository.getMyRecom(id)
+                if (response.isSuccessful){
+                    recom.postValue(Resource.Success(response.body()!!))
+                }else{
+                    getTmdbRecom(type, id)
+                }
+            }catch(e: Exception){
+                getTmdbRecom(type, id)
+            }
+        }
+    }
+
+    private fun getTmdbRecom(type: String, id: Int) = viewModelScope.launch {
+        try {
+            val response = repository.getRecom(type,id)
+            if (response.isSuccessful){
+                tmdbRecom.postValue(Resource.Success(response.body()!!.results))
+            }
+        }catch(e: Exception){
+            e.printStackTrace()
         }
     }
 

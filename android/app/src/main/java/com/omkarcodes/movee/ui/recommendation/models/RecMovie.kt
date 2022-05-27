@@ -8,4 +8,6 @@ data class RecMovie(
     val poster_path: String,
     val title: String,
     val vote_count: Int,
+    val tmdbId: Int = 0,
+    val imdbId: Int = 0,
 )

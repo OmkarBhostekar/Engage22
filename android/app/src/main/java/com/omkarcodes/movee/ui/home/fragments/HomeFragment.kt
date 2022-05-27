@@ -9,7 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.omkarcodes.movee.R
 import com.omkarcodes.movee.comman.Constants.IMAGE_URL
 import com.omkarcodes.movee.databinding.FragmentHomeBinding
@@ -21,6 +23,7 @@ import com.omkarcodes.movee.ui.home.adapters.BigPosterMoviesAdapter
 import com.omkarcodes.movee.ui.home.adapters.MoviesAdapter
 import com.omkarcodes.movee.ui.home.models.NetflixOg
 import com.omkarcodes.movee.ui.home.models.PopularMovie
+import com.omkarcodes.movee.utils.SliderTransformer
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -35,6 +38,8 @@ class HomeFragment : Fragment(R.layout.fragment_home),MoviesAdapter.OnMovieClick
     private val viewModel: HomeViewModel by viewModels()
     @Inject
     lateinit var name: String
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
@@ -45,7 +50,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),MoviesAdapter.OnMovieClick
         viewModel.getPopularMovies()
         viewModel.getNowPlayingMovies()
         viewModel.getMcuMovies()
-        viewModel.getPopularTvShows()
+//        viewModel.getPopularTvShows()
 
         binding.apply {
 //            rvTvShow.adapter = MoviesAdapter(this@HomeFragment)
@@ -61,8 +66,11 @@ class HomeFragment : Fragment(R.layout.fragment_home),MoviesAdapter.OnMovieClick
         viewModel.apply {
             netflixOriginals.observe(viewLifecycleOwner) {
                 if (it is Resource.Success) {
-                    binding.rvBigPosters.adapter =
-                        BigPosterMoviesAdapter(it.data!!, this@HomeFragment)
+                    binding.rvBigPosters.apply{
+                        adapter = BigPosterMoviesAdapter(it.data!!, this@HomeFragment)
+                        offscreenPageLimit = 3
+//                        setPageTransformer(SliderTransformer(3))
+                    }
                 }
             }
             popularMovies.observe(viewLifecycleOwner) {

@@ -60,5 +60,9 @@
     </fragment>
     <fragment
         android:id="@+id/forYouFragment"
-        android:name="com.omkarcodes.movee.ui.recommendation.fragments.ForYouFragment" />
+        android:name="com.omkarcodes.movee.ui.recommendation.fragments.ForYouFragment" >
+        <action
+            android:id="@+id/action_forYouFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>

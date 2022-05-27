@@ -12,17 +12,21 @@ import com.omkarcodes.movee.R
 import com.omkarcodes.movee.comman.Constants.IMAGE_URL
 import com.omkarcodes.movee.comman.toGenres
 import com.omkarcodes.movee.databinding.FragmentDetailBinding
+import com.omkarcodes.movee.databinding.ItemMovieBinding
 import com.omkarcodes.movee.models.Movie
 import com.omkarcodes.movee.models.Resource
 import com.omkarcodes.movee.ui.MainActivity
 import com.omkarcodes.movee.ui.detail.DetailViewModel
 import com.omkarcodes.movee.ui.detail.adapters.CastAdapter
+import com.omkarcodes.movee.ui.detail.adapters.MyRecomAdapter
+import com.omkarcodes.movee.ui.detail.adapters.TmdbRecomAdapter
 import com.omkarcodes.movee.ui.detail.models.video.Result
+import com.omkarcodes.movee.ui.recommendation.models.RecMovie
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class DetailFragment : Fragment(R.layout.fragment_detail){
+class DetailFragment : Fragment(R.layout.fragment_detail), MyRecomAdapter.OnMovieClick, TmdbRecomAdapter.OnMovieClick{
 
     private var _binding: FragmentDetailBinding? = null
     private val binding: FragmentDetailBinding
@@ -38,10 +42,12 @@ class DetailFragment : Fragment(R.layout.fragment_detail){
             detailViewModel.getTvDetail(args.id)
             detailViewModel.getCast("tv",args.id)
             detailViewModel.getVideos("tv",args.id)
+            detailViewModel.getMyRecommendation("tv",args.id)
         }else{
             detailViewModel.getMovieDetail(args.id)
             detailViewModel.getCast("movie",args.id)
             detailViewModel.getVideos("movie",args.id)
+            detailViewModel.getMyRecommendation("movie",args.id)
         }
 
         binding.apply {
@@ -61,6 +67,12 @@ class DetailFragment : Fragment(R.layout.fragment_detail){
                 if (it is Resource.Success) {
                     binding.apply {
                         it.data?.let { movie ->
+                            Glide.with(requireContext())
+                                .load((IMAGE_URL + movie.poster_path) ?: "")
+                                .into(ivPoster)
+                            Glide.with(requireContext()).load((IMAGE_URL + movie.backdrop_path))
+                                .into(ivBackdrop)
+                            tvTitle.text = movie.title
                             tvGenre.text = movie.genres.toGenres()
                             tvOverview.text = movie.overview
                             ratingBar.progress = (movie.vote_average).toInt()
@@ -126,11 +138,38 @@ class DetailFragment : Fragment(R.layout.fragment_detail){
                     }
                 }
             }
+            recom.observe(viewLifecycleOwner){
+                if (it is Resource.Success && it.data != null){
+                    binding.rvRecom.adapter = MyRecomAdapter(it.data,this@DetailFragment,args.type)
+                }
+            }
+            tmdbRecom.observe(viewLifecycleOwner){
+                if (it is Resource.Success && it.data != null){
+                    binding.rvRecom.adapter = TmdbRecomAdapter(it.data,this@DetailFragment,args.type)
+                }
+            }
         }
-
     }
 
-     override fun onDestroy() {
+    override fun onMyRecomClick(movie: RecMovie, type: String, binding: ItemMovieBinding) {
+        findNavController().navigate(R.id.detailFragment,Bundle().apply {
+            putInt("id",movie.tmdbId)
+            putString("type",args.type)
+        })
+    }
+
+    override fun onMyRecomClick(
+        movie: com.omkarcodes.movee.ui.detail.models.Result,
+        type: String,
+        binding: ItemMovieBinding
+    ) {
+        findNavController().navigate(R.id.detailFragment,Bundle().apply {
+            putInt("id",movie.id)
+            putString("type",args.type)
+        })
+    }
+
+    override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }

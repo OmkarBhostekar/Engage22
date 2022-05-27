@@ -112,4 +112,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation files("libs\\YouTubeAndroidPlayerApi.jar")
+
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 }
