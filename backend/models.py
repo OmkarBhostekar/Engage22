@@ -1,13 +1,9 @@
 import os
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import gc
 import pickle
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.sparse import csr_matrix
-from os import path
 
 ratings = pd.read_csv('dataset/ratings_new.csv')
 movies = pd.read_csv('dataset/movies_new.csv')
