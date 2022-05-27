@@ -6,6 +6,7 @@ import com.omkarcodes.movee.comman.Constants
 import com.omkarcodes.movee.data.MoveeDatabase
 import com.omkarcodes.movee.ui.detail.DetailApi
 import com.omkarcodes.movee.ui.home.HomeApi
+import com.omkarcodes.movee.ui.recommendation.RecommendationApi
 import com.omkarcodes.movee.ui.search.SearchApi
 import dagger.Module
 import dagger.Provides
@@ -42,6 +43,14 @@ object AppModule {
 
     @Provides
     fun provideSearchApi(retrofit: Retrofit) : SearchApi = retrofit.create(SearchApi::class.java)
+
+    @Provides
+    fun provideRecommendationApi(client: OkHttpClient) : RecommendationApi = Retrofit.Builder()
+        .client(client)
+        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(Constants.SERVER_BASE_URL)
+        .build()
+        .create(RecommendationApi::class.java)
 
 
     @Provides

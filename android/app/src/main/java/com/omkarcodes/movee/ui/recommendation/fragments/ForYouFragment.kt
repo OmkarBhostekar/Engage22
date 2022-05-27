@@ -1,21 +1,12 @@
-package com.omkarcodes.movee.ui.recommendation
+package com.omkarcodes.movee.ui.recommendation.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.omkarcodes.movee.R
 import com.omkarcodes.movee.databinding.FragmentRecommendationsBinding
-import com.omkarcodes.movee.databinding.FragmentSavedBinding
-import com.omkarcodes.movee.databinding.ItemSearchBinding
-import com.omkarcodes.movee.models.Movie
-import com.omkarcodes.movee.ui.saved.SavedViewModel
-import com.omkarcodes.movee.ui.saved.adapters.SavedAdapter
-import com.omkarcodes.movee.ui.saved.fragments.SavedFragmentDirections
+import com.omkarcodes.movee.ui.recommendation.RecommendationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,11 +16,14 @@ class ForYouFragment : Fragment(R.layout.fragment_recommendations){
     private val binding: FragmentRecommendationsBinding
         get() = _binding!!
 
+    private val recommendationViewModel: RecommendationViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentRecommendationsBinding.bind(view)
 
-
+        recommendationViewModel.getTopRated()
+        recommendationViewModel.getContentBased(1)
 
     }
 
