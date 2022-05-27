@@ -4,59 +4,12 @@ import pandas as pd
 import pickle
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.sparse import csr_matrix
+import joblib
 
-ratings = pd.read_csv('dataset/ratings_new.csv')
-movies = pd.read_csv('dataset/movies_new.csv')
+ratings = pd.read_csv('dataset/ratings.csv')
+movies = pd.read_csv('dataset/movies.csv')
 
 movies['genres'] = movies['genres'].apply(lambda x: x.replace('|',','))
-
-os.mkdir('model')
-with open('model/top_rated.pkl', 'w') as fp:
-    pass
-with open('model/genre.pkl', 'w') as fp:
-    pass
-with open('model/corr_mat.pkl', 'w') as fp:
-    pass
-with open('model/item_genre_mat.pkl', 'w') as fp:
-    pass
-with open('model/cf_memory.pkl', 'w') as fp:
-    pass
-
-
-'''
-<============== top rated recommendations ==============>
-'''
-
-def weighted_rating(v,m,R,C):
-    return ( (v / (v + m)) * R) + ( (m / (v + m)) * C )
-
-if not os._exists('model/top_rated.pkl'):
-    
-    # pre processing
-    vote_count = (
-        ratings
-        .groupby('movieId',as_index=False)
-        .agg( {'userId':'count', 'rating':'mean'} )
-        )
-    vote_count.columns = ['movieId', 'vote_count', 'avg_rating']
-
-    # calcuate input parameters
-    C = np.mean(vote_count['avg_rating'])
-    m = np.percentile(vote_count['vote_count'], 70)
-    vote_count = vote_count[vote_count['vote_count'] >= m]
-    R = vote_count['avg_rating']
-    v = vote_count['vote_count']
-    vote_count['weighted_rating'] = weighted_rating(v,m,R,C)
-
-    # post processing
-    vote_count = vote_count.merge(movies, on = ['movieId'], how = 'left')
-    popular_items = vote_count.loc[:,['movieId','title', 'genres', 'overview','poster_path','tmdbId', 'imdbId', 'weighted_rating',]]
-    popular_items = popular_items.sort_values('weighted_rating',ascending=False)
-    popular_items = popular_items.head(10)
-
-    file = open('model/top_rated.pkl', 'wb')
-    pickle.dump(popular_items, file)
-    file.close()
 
 
 '''
@@ -69,17 +22,7 @@ ratedMovies = movies.loc[movies['movieId'].isin(ratings['movieId'])].copy()
 genre = ratedMovies['genres'].str.split(",", expand=True)
 
 # get all possible genre
-all_genre = set()
-for c in genre.columns:
-    distinct_genre = genre[c].str.lower().str.strip().unique()
-    all_genre.update(distinct_genre)
-all_genre.remove(None)
-# all_genre.remove('(no genres listed)')
-
-# dump matrix
-f1 = open('model/genre.pkl', 'wb')
-pickle.dump(all_genre, f1)
-f1.close()
+all_genre = joblib.load('model/genres.joblib')
 
 # create item-genre matrix
 item_genre_mat = movies[['movieId', 'genres']].copy()
