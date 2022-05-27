@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, HTTPException, Response
 import pandas as pd
 import pandas as pd
 import numpy as np
@@ -23,11 +23,15 @@ def get_top_rated():
 
 @app.get("/movie/content-recommendation")
 def get_top_rated(movieId):
+    if movieId not in movies['movieId']:
+        raise HTTPException(status_code=404, detail="Item not found")
     res = getContentBasedRecommendation(int(movieId))
     return res
 
 @app.get("/movie/cf-recommendation")
 def get_top_rated(movieId):
+    if movieId not in movies['movieId']:
+        raise HTTPException(status_code=404, detail="Item not found")
     res = getContentBasedRecommendation(int(movieId))
     return res
 
