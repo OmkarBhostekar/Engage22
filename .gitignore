@@ -1,4 +1,4 @@
-/backend/model
+/backend/model/*.pkl
 *.iml
 .gradle
 /android/local.properties
