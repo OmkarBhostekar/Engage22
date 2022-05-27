@@ -14,6 +14,18 @@ movies = pd.read_csv('dataset/movies_new.csv')
 
 movies['genres'] = movies['genres'].apply(lambda x: x.replace('|',','))
 
+os.mkdir('model')
+with open('model/top_rated.pkl', 'w') as fp:
+    pass
+with open('model/genre.pkl', 'w') as fp:
+    pass
+with open('model/corr_mat.pkl', 'w') as fp:
+    pass
+with open('model/item_genre_mat.pkl', 'w') as fp:
+    pass
+with open('model/cf_memory.pkl', 'w') as fp:
+    pass
+
 
 '''
 <============== top rated recommendations ==============>
