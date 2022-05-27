@@ -6,11 +6,11 @@ import os
 from sklearn.metrics.pairwise import cosine_similarity
 import pickle
 
-movies = pd.read_csv('model/movies.csv')
+movies = pd.read_csv('dataset/movies.csv')
 
 app = FastAPI()
 
-f = open('model/genre', 'rb')
+f = open('model/genre.pkl', 'rb')
 allGenres = pickle.load(f)
 f.close()
 
@@ -26,6 +26,11 @@ def get_top_rated(movieId):
     res = getContentBasedRecommendation(int(movieId))
     return res
 
+@app.get("/movie/cf-recommendation")
+def get_top_rated(movieId):
+    res = getContentBasedRecommendation(int(movieId))
+    return res
+
 @app.get('/movie/genres')
 def get_genres():
     return allGenres
@@ -36,7 +41,7 @@ def get_genres():
 <============== top rated recommendations ==============>
 '''
 
-f = open('model/top_rated', 'rb')
+f = open('model/top_rated.pkl', 'rb')
 popular_movies = pickle.load(f)
 f.close()
 
@@ -47,11 +52,11 @@ def get_highly_rated():
 <============== content based recommendations ==============>
 '''
 
-r = open('model/item_genre_mat', 'rb')
+r = open('model/item_genre_mat.pkl', 'rb')
 item_genre_mat = pickle.load(r)
 r.close()
-r2 = open('model/corr_mat', 'rb')
-corr_mat = pickle.load(r2)
+r2 = open('model/corr_mat.pkl', 'rb')
+corr_matrix = pickle.load(r2)
 r2.close()
 
 def top_k_items(item_id, top_k, corr_mat, map_name):
@@ -68,7 +73,26 @@ name2ind = {v:k for k,v in ind2name.items()}
 def getContentBasedRecommendation(movieId):
     similar_items = top_k_items(name2ind[movieId],
                             top_k = 10,
-                            corr_mat = corr_mat,
+                            corr_mat = corr_matrix,
+                            map_name = ind2name)
+    if(movieId in similar_items):
+        similar_items.remove(int(movieId))
+    res = movies.loc[movies['movieId'].isin(similar_items)]
+    return Response(res.to_json(orient="records"), media_type="application/json")
+
+
+'''
+<============== content based recommendations ==============>
+'''
+
+r = open('model/cf_memory.pkl', 'rb')
+movie_cf_mat = pickle.load(r)
+r.close()
+
+def getCfRecommendations(movieId):
+    similar_items = top_k_items(name2ind[movieId],
+                            top_k = 10,
+                            corr_mat = movie_cf_mat,
                             map_name = ind2name)
     if(movieId in similar_items):
         similar_items.remove(int(movieId))
