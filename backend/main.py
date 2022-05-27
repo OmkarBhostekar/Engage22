@@ -5,8 +5,15 @@ import numpy as np
 import os
 from sklearn.metrics.pairwise import cosine_similarity
 import pickle
+from zipfile import ZipFile
 
 movies = pd.read_csv('dataset/movies.csv')
+
+if not os.path.exists('model/genre.pkl'):
+    # opening the zip file in READ mode
+    with ZipFile('model/models.zip') as zf:
+            zf.extractall('model/')
+    print('done')
 
 app = FastAPI()
 
@@ -23,14 +30,14 @@ def get_top_rated():
 
 @app.get("/movie/content-recommendation")
 def get_top_rated(movieId):
-    if movieId not in movies['movieId']:
+    if int(movieId) not in movies['movieId']:
         raise HTTPException(status_code=404, detail="Item not found")
     res = getContentBasedRecommendation(int(movieId))
     return res
 
 @app.get("/movie/cf-recommendation")
 def get_top_rated(movieId):
-    if movieId not in movies['movieId']:
+    if int(movieId) not in movies['movieId']:
         raise HTTPException(status_code=404, detail="Item not found")
     res = getContentBasedRecommendation(int(movieId))
     return res
