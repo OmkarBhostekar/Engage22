@@ -10,6 +10,7 @@ import com.omkarcodes.movee.ui.detail.models.RecResponse
 import com.omkarcodes.movee.ui.detail.models.Result
 import com.omkarcodes.movee.ui.home.models.PopularMovie
 import com.omkarcodes.movee.ui.recommendation.models.RecMovie
+import kotlin.math.min
 
 class TmdbRecomAdapter(
     private val list: List<Result>,
@@ -26,7 +27,7 @@ class TmdbRecomAdapter(
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return min(list.size,10)
     }
 
     inner class ViewHolder(private val binding: ItemMovieBinding)

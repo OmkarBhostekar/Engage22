@@ -12,6 +12,6 @@ interface RecommendationApi {
 
     @GET("movie/content-recommendation")
     suspend fun getContentBased(
-        @Query("movieId") movieId: Int
+        @Query("tmdbId") movieId: Int
     ) : Response<List<RecMovie>>
 }

@@ -29,7 +29,7 @@ class TopCarouselAdapter(
     inner class ViewHolder(private val binding: ItemBigPosterMovieBinding)
         : RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int){
-            Glide.with(binding.root.context).load(IMAGE_URL+list[position].poster_path)
+            Glide.with(binding.root.context).load(IMAGE_URL+list[position].backdrop_path)
                     .into(binding.ivPoster)
             binding.tvMovieTitle.text = list[position].title
 //            binding.tvReleaseDate.text = list[position].first_air_date

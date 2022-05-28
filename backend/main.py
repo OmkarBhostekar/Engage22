@@ -2,21 +2,11 @@ from fastapi import FastAPI, HTTPException, Response
 import joblib
 import pandas as pd
 import pandas as pd
-import numpy as np
-import os
-from sklearn.metrics.pairwise import cosine_similarity
-import pickle
-from zipfile import ZipFile
 
 movies = pd.read_csv('dataset/movies.csv')
 movies = movies.fillna('')
-moviesDict = movies[['movieId','tmdbId','title','poster_path','backdrop_path']]
-moviesDict = moviesDict.to_dict(orient='records')
-# if not os.path.exists('model/genre.pkl'):
-#     # opening the zip file in READ mode
-#     with ZipFile('model/models.zip') as zf:
-#             zf.extractall('model/')
-#     print('done')
+movies = movies[['movieId','tmdbId','title','poster_path','backdrop_path']]
+moviesDict = movies.to_dict(orient='records')
 
 app = FastAPI()
 
@@ -36,12 +26,12 @@ def get_content_based(tmdbId):
     res = getContentBasedRecommendation(int(tmdbId))
     return res
 
-# @app.get("/movie/cf-recommendation")
-# def get_cf_based(tmdbId):
-#     if int(tmdbId) not in movies['tmdbId']:
-#         raise HTTPException(status_code=404, detail="Item not found")
-#     res = getCfRecommendations(int(tmdbId))
-#     return res
+@app.get("/movie/cf-recommendation")
+def get_cf_based(movieId):
+    if int(movieId) not in movies['movieId']:
+        raise HTTPException(status_code=404, detail="Item not found")
+    res = getCfRecommendations(int(movieId))
+    return res
 
 @app.get('/movie/genres')
 def get_genres():
@@ -75,36 +65,33 @@ def getContentBasedRecommendation(tmdbId):
     print(type(L))
     return L
 
-# item_genre_mat = joblib.load('model/item_genre_mat.joblib')
-# corr_matrix = joblib.load('model/corr_mat.joblib')
-# def top_k_items(item_id, top_k, corr_mat, map_name):
-#     # sort correlation value ascendingly and select top_k item_id
-#     top_items = corr_mat[item_id,:].argsort()[-top_k:][::-1] 
-#     top_items = [map_name[e] for e in top_items] 
+item_genre_mat = joblib.load('model/item_genre_mat.joblib')
 
-#     return top_items
+def top_k_items(item_id, top_k, corr_mat, map_name):
+    # sort correlation value ascendingly and select top_k item_id
+    top_items = corr_mat[item_id,:].argsort()[-top_k:][::-1] 
+    top_items = [map_name[e] for e in top_items] 
 
-# # get top-k similar items
-# ind2name = {ind:name for ind,name in enumerate(item_genre_mat.index)}
-# name2ind = {v:k for k,v in ind2name.items()}
+    return top_items
+
+# get top-k similar items
+ind2name = {ind:name for ind,name in enumerate(item_genre_mat.index)}
+name2ind = {v:k for k,v in ind2name.items()}
 
 
-# '''
-# <============== content based recommendations ==============>
-# '''
-# movie_cf_mat = None
+'''
+<============== Collaborative filtering recommendations ==============>
+'''
 
-# def getCfRecommendations(movieId):
-#     if movie_cf_mat is None:      
-#         r = open('model/cf_memory.pkl', 'rb')
-#         movie_cf_mat = pickle.load(r)
-#         print('loaded cf')
-#         r.close()
-#     similar_items = top_k_items(name2ind[movieId],
-#                             top_k = 10,
-#                             corr_mat = movie_cf_mat,
-#                             map_name = ind2name)
-#     if(movieId in similar_items):
-#         similar_items.remove(int(movieId))
-#     res = movies.loc[movies['movieId'].isin(similar_items)]
-#     return Response(res.to_json(orient="records"), media_type="application/json")
+funk_mat = joblib.load('model/funk_model.joblib')
+
+def getCfRecommendations(movieId):
+    similar_items = top_k_items(name2ind[movieId],
+                            top_k = 10,
+                            corr_mat = funk_mat,
+                            map_name = ind2name)
+    if(movieId in similar_items):
+        similar_items.remove(int(movieId))
+
+    res = movies.loc[movies['movieId'].isin(similar_items)]
+    return Response(res.to_json(orient="records"), media_type="application/json")

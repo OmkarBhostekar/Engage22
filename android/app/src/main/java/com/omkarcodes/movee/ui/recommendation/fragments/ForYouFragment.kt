@@ -8,7 +8,9 @@ import androidx.navigation.fragment.findNavController
 import com.omkarcodes.movee.R
 import com.omkarcodes.movee.databinding.FragmentRecommendationsBinding
 import com.omkarcodes.movee.databinding.ItemBigPosterMovieBinding
+import com.omkarcodes.movee.databinding.ItemMovieBinding
 import com.omkarcodes.movee.models.Resource
+import com.omkarcodes.movee.ui.detail.adapters.MyRecomAdapter
 import com.omkarcodes.movee.ui.home.adapters.BigPosterMoviesAdapter
 import com.omkarcodes.movee.ui.recommendation.RecommendationViewModel
 import com.omkarcodes.movee.ui.recommendation.adapters.TopCarouselAdapter
@@ -17,7 +19,8 @@ import com.omkarcodes.movee.utils.SliderTransformer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ForYouFragment : Fragment(R.layout.fragment_recommendations), TopCarouselAdapter.OnMovieClick{
+class ForYouFragment : Fragment(R.layout.fragment_recommendations), TopCarouselAdapter.OnMovieClick,
+MyRecomAdapter.OnMovieClick{
 
     private var _binding: FragmentRecommendationsBinding? = null
     private val binding: FragmentRecommendationsBinding
@@ -40,7 +43,7 @@ class ForYouFragment : Fragment(R.layout.fragment_recommendations), TopCarouselA
 
         recommendationViewModel.apply {
             getTopRated()
-            getContentBased(1)
+            getContentBased(24428)
 
             topRated.observe(viewLifecycleOwner) {
                 when(it){
@@ -56,12 +59,31 @@ class ForYouFragment : Fragment(R.layout.fragment_recommendations), TopCarouselA
                     else -> Unit
                 }
             }
+
+            contentBased.observe(viewLifecycleOwner) {
+                when(it){
+                    is Resource.Success -> {
+                        binding.rvRecom.adapter = MyRecomAdapter(it.data!!,this@ForYouFragment,"movie")
+                    }
+                    is Resource.Error -> {
+
+                    }
+                    is Resource.Loading -> {
+
+                    }
+                    else -> Unit
+                }
+            }
         }
 
     }
 
     override fun onCarouselClick(movie: RecMovie, binding: ItemBigPosterMovieBinding) {
-        findNavController().navigate(ForYouFragmentDirections.actionForYouFragmentToDetailFragment(id = 260, type = "movie"))
+        findNavController().navigate(ForYouFragmentDirections.actionForYouFragmentToDetailFragment(id = movie.tmdbId, type = "movie"))
+    }
+
+    override fun onMyRecomClick(movie: RecMovie, type: String, binding: ItemMovieBinding) {
+        findNavController().navigate(ForYouFragmentDirections.actionForYouFragmentToDetailFragment(id = movie.tmdbId, type = type))
     }
 
     override fun onDestroy() {
