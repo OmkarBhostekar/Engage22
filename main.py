@@ -30,17 +30,17 @@ def get_top_rated():
     return res
 
 @app.get("/movie/content-recommendation")
-def get_content_based(movieId):
-    if int(movieId) not in movies['movieId']:
+def get_content_based(tmdbId):
+    if int(tmdbId) not in movies['tmdbId'].values:
         raise HTTPException(status_code=404, detail="Item not found")
-    res = getContentBasedRecommendation(int(movieId))
+    res = getContentBasedRecommendation(int(tmdbId))
     return res
 
 # @app.get("/movie/cf-recommendation")
-# def get_cf_based(movieId):
-#     if int(movieId) not in movies['tmdbId']:
+# def get_cf_based(tmdbId):
+#     if int(tmdbId) not in movies['tmdbId']:
 #         raise HTTPException(status_code=404, detail="Item not found")
-#     res = getCfRecommendations(int(movieId))
+#     res = getCfRecommendations(int(tmdbId))
 #     return res
 
 @app.get('/movie/genres')
@@ -65,8 +65,8 @@ def get_highly_rated():
 movieDf = joblib.load('model/movie_df.joblib')
 similarity = joblib.load('model/content_based.joblib')
 
-def getContentBasedRecommendation(movieId):
-    idx = movieDf[movieDf['movieId'] == movieId].index[0]
+def getContentBasedRecommendation(tmdbId):
+    idx = movieDf[movieDf['tmdbId'] == int(tmdbId)].index[0]
     distances = similarity[idx]
     movies_list = sorted(list(enumerate(distances)),reverse=True,key=lambda x:x[1])[1:11]
     L = []
