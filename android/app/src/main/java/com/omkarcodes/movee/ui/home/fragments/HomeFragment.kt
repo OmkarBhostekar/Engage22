@@ -48,14 +48,12 @@ class HomeFragment : Fragment(R.layout.fragment_home),MoviesAdapter.OnMovieClick
 
         viewModel.getNetflixOriginals()
         viewModel.getPopularMovies()
-        viewModel.getNowPlayingMovies()
+//        viewModel.getNowPlayingMovies()
         viewModel.getMcuMovies()
-//        viewModel.getPopularTvShows()
+        viewModel.getPopularTvShows()
 
         binding.apply {
-//            rvTvShow.adapter = MoviesAdapter(this@HomeFragment)
-//            rvTopRatedMovies.adapter = MoviesAdapter(this@HomeFragment)
-            btnSearch.setOnClickListener{
+            cardSearch.setOnClickListener{
                 findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
             }
         }
@@ -66,31 +64,36 @@ class HomeFragment : Fragment(R.layout.fragment_home),MoviesAdapter.OnMovieClick
         viewModel.apply {
             netflixOriginals.observe(viewLifecycleOwner) {
                 if (it is Resource.Success) {
+                    binding.rvBigPosters.visibility = View.VISIBLE
                     binding.rvBigPosters.apply{
                         adapter = BigPosterMoviesAdapter(it.data!!, this@HomeFragment)
                         offscreenPageLimit = 3
-//                        setPageTransformer(SliderTransformer(3))
+                        setPageTransformer(SliderTransformer(3))
                     }
                 }
             }
             popularMovies.observe(viewLifecycleOwner) {
-                if (it is Resource.Success)
+                if (it is Resource.Success) {
+                    binding.tvHeadline2.visibility = View.VISIBLE
+                    binding.rvPopularMovies.visibility = View.VISIBLE
                     binding.rvPopularMovies.adapter =
                         MoviesAdapter(it.data!!, this@HomeFragment, "movie")
-            }
-            nowPlayingMovies.observe(viewLifecycleOwner) {
-                if (it is Resource.Success)
-                    binding.rvNowPlayingMovies.adapter =
-                        MoviesAdapter(it.data!!, this@HomeFragment, "movie")
+                }
             }
             popularTvShows.observe(viewLifecycleOwner) {
-                if (it is Resource.Success)
-                    binding.rvTvShow.adapter = MoviesAdapter(it.data!!, this@HomeFragment, "tv")
+                if (it is Resource.Success) {
+                    binding.tvHeadline3.visibility = View.VISIBLE
+                    binding.rvTvShows.visibility = View.VISIBLE
+                    binding.rvTvShows.adapter = MoviesAdapter(it.data!!, this@HomeFragment, "tv")
+                }
             }
             mcuMovies.observe(viewLifecycleOwner) {
-                if (it is Resource.Success)
+                if (it is Resource.Success) {
+                    binding.tvHeadline5.visibility = View.VISIBLE
+                    binding.rvMcuMovies.visibility = View.VISIBLE
                     binding.rvMcuMovies.adapter =
                         MoviesAdapter(it.data!!, this@HomeFragment, "movie")
+                }
             }
         }
     }

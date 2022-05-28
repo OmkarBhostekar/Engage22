@@ -13,17 +13,21 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/SplashScreenTheme">
-        <activity android:name=".ui.MainActivity"
+        <activity android:name=".ui.home.fragments.OnBoardingActivity"
             android:configChanges="keyboardHidden"
+            android:noHistory="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.MainActivity"
+            android:configChanges="keyboardHidden"
+            android:exported="true"/>
         <activity android:name=".ui.detail.fragments.VideoPlayerActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

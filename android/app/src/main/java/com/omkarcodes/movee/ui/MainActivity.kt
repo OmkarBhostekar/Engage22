@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             navController = findNavController(R.id.navHostFragment)
 
             navController.addOnDestinationChangedListener { controller, destination, arguments ->
-                if (destination.id == R.id.detailFragment){
+                if (destination.id == R.id.detailFragment || destination.id == R.id.searchFragment){
                     tabLayout.visibility = View.GONE
                 }else
                     tabLayout.visibility = View.VISIBLE
@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             tabLayout.addTab(tabLayout.newTab().apply { text = "Discover" })
             tabLayout.addTab(tabLayout.newTab().apply { text = "For You" })
             tabLayout.addTab(tabLayout.newTab().apply { text = "Watchlist" })
+            tabLayout.selectTab(tabLayout.getTabAt(1))
 
             tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {

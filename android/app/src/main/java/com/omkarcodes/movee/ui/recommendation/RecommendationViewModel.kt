@@ -24,9 +24,11 @@ class RecommendationViewModel @Inject constructor(
 
     fun getTopRated() = viewModelScope.launch(Dispatchers.IO) {
         try {
-            val response = repository.getTopRated()
-            if (response.isSuccessful && response.body() != null)
-                topRated.postValue(Resource.Success(response.body()!!))
+            if (topRated.value == null){
+                val response = repository.getTopRated()
+                if (response.isSuccessful && response.body() != null)
+                    topRated.postValue(Resource.Success(response.body()!!))
+            }
         }catch (e: Exception){
             e.printStackTrace()
         }
@@ -34,9 +36,11 @@ class RecommendationViewModel @Inject constructor(
 
     fun getContentBased(tmdbId: Int) = viewModelScope.launch(Dispatchers.IO) {
         try {
-            val response = repository.getContentBased(tmdbId)
-            if (response.isSuccessful && response.body() != null)
-                contentBased.postValue(Resource.Success(response.body()!!))
+            if (contentBased.value == null){
+                val response = repository.getContentBased(tmdbId)
+                if (response.isSuccessful && response.body() != null)
+                    contentBased.postValue(Resource.Success(response.body()!!))
+            }
         }catch (e: Exception){
             e.printStackTrace()
         }
@@ -44,9 +48,11 @@ class RecommendationViewModel @Inject constructor(
 
     fun getCFRecom(movieId: Int) = viewModelScope.launch(Dispatchers.IO) {
         try {
-            val response = repository.getCfRecom(movieId)
-            if (response.isSuccessful && response.body() != null)
-                cfBased.postValue(Resource.Success(response.body()!!))
+            if (cfBased.value == null){
+                val response = repository.getCfRecom(movieId)
+                if (response.isSuccessful && response.body() != null)
+                    cfBased.postValue(Resource.Success(response.body()!!))
+            }
         }catch (e: Exception){
             e.printStackTrace()
         }
@@ -54,9 +60,11 @@ class RecommendationViewModel @Inject constructor(
 
     fun getGen1(genre: String) = viewModelScope.launch(Dispatchers.IO) {
         try {
-            val response = repository.getByGenres(genre)
-            if (response.isSuccessful && response.body() != null)
-                gen1.postValue(Resource.Success(response.body()!!))
+            if (gen1.value == null){
+                val response = repository.getByGenres(genre)
+                if (response.isSuccessful && response.body() != null)
+                    gen1.postValue(Resource.Success(response.body()!!))
+            }
         }catch (e: Exception){
             e.printStackTrace()
         }
@@ -64,9 +72,11 @@ class RecommendationViewModel @Inject constructor(
 
     fun getGen2(genre: String) = viewModelScope.launch(Dispatchers.IO) {
         try {
-            val response = repository.getByGenres(genre)
-            if (response.isSuccessful && response.body() != null)
-                gen2.postValue(Resource.Success(response.body()!!))
+            if (gen2.value == null){
+                val response = repository.getByGenres(genre)
+                if (response.isSuccessful && response.body() != null)
+                    gen2.postValue(Resource.Success(response.body()!!))
+            }
         }catch (e: Exception){
             e.printStackTrace()
         }
@@ -74,9 +84,11 @@ class RecommendationViewModel @Inject constructor(
 
     fun getGen3(genre: String) = viewModelScope.launch(Dispatchers.IO) {
         try {
-            val response = repository.getByGenres(genre)
-            if (response.isSuccessful && response.body() != null)
-                gen3.postValue(Resource.Success(response.body()!!))
+            if (gen3.value == null){
+                val response = repository.getByGenres(genre)
+                if (response.isSuccessful && response.body() != null)
+                    gen3.postValue(Resource.Success(response.body()!!))
+            }
         }catch (e: Exception){
             e.printStackTrace()
         }

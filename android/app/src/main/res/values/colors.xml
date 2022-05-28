@@ -16,6 +16,7 @@
     <color name="headlineColor">#000</color>
 
     <color name="cardColor">#efefef</color>
+    <color name="darkGray">#202020</color>
 
 
 </resources>

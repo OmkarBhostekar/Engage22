@@ -15,4 +15,5 @@
     <color name="colorOnPrimary">#171B30</color>
     <color name="headlineColor">#fff</color>
     <color name="cardColor">#808080</color>
+    <color name="darkGray">#202020</color>
 </resources>

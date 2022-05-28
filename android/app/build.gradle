@@ -114,4 +114,8 @@ dependencies {
     implementation files("libs\\YouTubeAndroidPlayerApi.jar")
 
     implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    implementation 'com.airbnb.android:lottie:4.1.0'
+
+    implementation "com.tbuonomo:dotsindicator:4.3"
 }

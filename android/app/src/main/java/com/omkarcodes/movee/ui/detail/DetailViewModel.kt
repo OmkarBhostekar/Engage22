@@ -1,5 +1,6 @@
 package com.omkarcodes.movee.ui.detail
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,6 +14,7 @@ import com.omkarcodes.movee.ui.recommendation.models.RecMovie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,6 +32,7 @@ class DetailViewModel @Inject constructor(
     fun getMovieDetail(movieId: Int) = viewModelScope.launch {
         try{
             val response = repository.getMovieDetail(movieId)
+            Timber.tag("movie-detail").d(response.body().toString())
             if (response.isSuccessful)
                 movieDetail.postValue(Resource.Success(response.body()!!))
         }catch(e: Exception){
@@ -80,6 +83,7 @@ class DetailViewModel @Inject constructor(
                 if (response.isSuccessful){
                     recom.postValue(Resource.Success(response.body()!!))
                 }else{
+                    // If movie is not in our model then as fall back we'll use tmdb api
                     getTmdbRecom(type, id)
                 }
             }catch(e: Exception){

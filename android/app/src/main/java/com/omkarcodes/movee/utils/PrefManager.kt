@@ -17,6 +17,7 @@ class PrefManager(context: Context) {
         private const val GEN1 = "gen1"
         private const val GEN2 = "gen2"
         private const val GEN3 = "gen3"
+        private const val ONBOARD_DONE = "isOnBoardDone"
     }
 
     init {
@@ -50,6 +51,11 @@ class PrefManager(context: Context) {
         mEditor.apply()
     }
 
+    fun setOnBoardDone(){
+        mEditor.putBoolean(ONBOARD_DONE, true)
+        mEditor.apply()
+    }
+
     fun getRecentMovieId(): Int {
         return mSharedPreferences.getInt(MOVIE_ID,1)
     }
@@ -68,6 +74,10 @@ class PrefManager(context: Context) {
 
     fun getGen3(): String {
         return mSharedPreferences.getString(GEN3,"Thriller") ?: "Thriller"
+    }
+
+    fun getOnBoardDone(): Boolean {
+        return mSharedPreferences.getBoolean(ONBOARD_DONE,false)
     }
 
 }
