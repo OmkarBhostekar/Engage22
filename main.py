@@ -10,7 +10,8 @@ from zipfile import ZipFile
 
 movies = pd.read_csv('dataset/movies.csv')
 movies = movies.fillna('')
-moviesDict = movies.to_dict(orient='records')
+moviesDict = movies[['movieId','tmdbId','title','poster_path','backdrop_path']]
+moviesDict = moviesDict.to_dict(orient='records')
 # if not os.path.exists('model/genre.pkl'):
 #     # opening the zip file in READ mode
 #     with ZipFile('model/models.zip') as zf:
