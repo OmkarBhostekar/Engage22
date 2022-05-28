@@ -37,6 +37,15 @@ def get_cf_based(movieId):
 def get_genres():
     return allGenres
 
+genre_dict = joblib.load('model/genre_movies.joblib')
+
+@app.get('/movie/')
+def get_movies_by_genre(genre):
+    if genre not in allGenres:
+        raise HTTPException(status_code=404, detail="Genre not found")
+    res = movies.loc[movies['tmdbId'].isin(genre_dict[genre])]
+    return Response(res.to_json(orient="records"), media_type="application/json")
+
 # Helper Functions
 
 '''
