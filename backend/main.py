@@ -1,7 +1,6 @@
 from fastapi import FastAPI, HTTPException, Response
 import joblib
 import pandas as pd
-import pandas as pd
 
 movies = pd.read_csv('dataset/movies.csv')
 movies = movies.fillna('')
@@ -10,15 +9,20 @@ moviesDict = movies.to_dict(orient='records')
 
 app = FastAPI()
 
+# load All genres saved in model
 allGenres = joblib.load('model/genres.joblib')
 
 
 # Urls
+
+# Get Top rated movies
 @app.get("/movie/top-rated")
 def get_top_rated():
     res = get_highly_rated()
     return res
 
+# Get content based recommendation for given id
+# Query - tmdbId 
 @app.get("/movie/content-recommendation")
 def get_content_based(tmdbId):
     if int(tmdbId) not in movies['tmdbId'].values:
@@ -26,6 +30,8 @@ def get_content_based(tmdbId):
     res = getContentBasedRecommendation(int(tmdbId))
     return res
 
+# Get recommendation ratings of other users for given id by collaborative filtering
+# Query - movieId 
 @app.get("/movie/cf-recommendation")
 def get_cf_based(movieId):
     if int(movieId) not in movies['movieId']:
@@ -33,12 +39,16 @@ def get_cf_based(movieId):
     res = getCfRecommendations(int(movieId))
     return res
 
+# Get all genres
 @app.get('/movie/genres')
 def get_genres():
     return allGenres
 
+# load genre wise saved dict
 genre_dict = joblib.load('model/genre_movies.joblib')
 
+# Get top movies by genre
+# Query - genre
 @app.get('/movie/')
 def get_movies_by_genre(genre):
     if genre not in allGenres:
@@ -57,6 +67,8 @@ popular_movies = joblib.load('model/top_rated.joblib')
 def get_highly_rated():
     return Response(popular_movies.to_json(orient="records"), media_type="application/json")
     
+
+
 '''
 <============== content based recommendations ==============>
 '''
@@ -74,8 +86,13 @@ def getContentBasedRecommendation(tmdbId):
     print(type(L))
     return L
 
+'''
+<============== Collaborative filtering recommendations ==============>
+'''
+
 item_genre_mat = joblib.load('model/item_genre_mat.joblib')
 
+# get top k items for given matrix and col name
 def top_k_items(item_id, top_k, corr_mat, map_name):
     # sort correlation value ascendingly and select top_k item_id
     top_items = corr_mat[item_id,:].argsort()[-top_k:][::-1] 
@@ -86,11 +103,6 @@ def top_k_items(item_id, top_k, corr_mat, map_name):
 # get top-k similar items
 ind2name = {ind:name for ind,name in enumerate(item_genre_mat.index)}
 name2ind = {v:k for k,v in ind2name.items()}
-
-
-'''
-<============== Collaborative filtering recommendations ==============>
-'''
 
 funk_mat = joblib.load('model/funk_model.joblib')
 
