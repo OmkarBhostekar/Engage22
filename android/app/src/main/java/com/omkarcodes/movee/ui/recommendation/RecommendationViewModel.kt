@@ -17,6 +17,10 @@ class RecommendationViewModel @Inject constructor(
 
     val topRated = MutableLiveData<Resource<List<RecMovie>>>()
     val contentBased = MutableLiveData<Resource<List<RecMovie>>>()
+    val cfBased = MutableLiveData<Resource<List<RecMovie>>>()
+    val gen1 = MutableLiveData<Resource<List<RecMovie>>>()
+    val gen2 = MutableLiveData<Resource<List<RecMovie>>>()
+    val gen3 = MutableLiveData<Resource<List<RecMovie>>>()
 
     fun getTopRated() = viewModelScope.launch(Dispatchers.IO) {
         try {
@@ -28,11 +32,51 @@ class RecommendationViewModel @Inject constructor(
         }
     }
 
-    fun getContentBased(movieId: Int) = viewModelScope.launch(Dispatchers.IO) {
+    fun getContentBased(tmdbId: Int) = viewModelScope.launch(Dispatchers.IO) {
         try {
-            val response = repository.getContentBased(movieId)
+            val response = repository.getContentBased(tmdbId)
             if (response.isSuccessful && response.body() != null)
                 contentBased.postValue(Resource.Success(response.body()!!))
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
+
+    fun getCFRecom(movieId: Int) = viewModelScope.launch(Dispatchers.IO) {
+        try {
+            val response = repository.getCfRecom(movieId)
+            if (response.isSuccessful && response.body() != null)
+                cfBased.postValue(Resource.Success(response.body()!!))
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
+
+    fun getGen1(genre: String) = viewModelScope.launch(Dispatchers.IO) {
+        try {
+            val response = repository.getByGenres(genre)
+            if (response.isSuccessful && response.body() != null)
+                gen1.postValue(Resource.Success(response.body()!!))
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
+
+    fun getGen2(genre: String) = viewModelScope.launch(Dispatchers.IO) {
+        try {
+            val response = repository.getByGenres(genre)
+            if (response.isSuccessful && response.body() != null)
+                gen2.postValue(Resource.Success(response.body()!!))
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
+
+    fun getGen3(genre: String) = viewModelScope.launch(Dispatchers.IO) {
+        try {
+            val response = repository.getByGenres(genre)
+            if (response.isSuccessful && response.body() != null)
+                gen3.postValue(Resource.Success(response.body()!!))
         }catch (e: Exception){
             e.printStackTrace()
         }

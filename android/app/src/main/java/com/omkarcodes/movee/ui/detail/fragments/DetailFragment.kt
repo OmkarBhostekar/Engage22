@@ -22,6 +22,7 @@ import com.omkarcodes.movee.ui.detail.adapters.MyRecomAdapter
 import com.omkarcodes.movee.ui.detail.adapters.TmdbRecomAdapter
 import com.omkarcodes.movee.ui.detail.models.video.Result
 import com.omkarcodes.movee.ui.recommendation.models.RecMovie
+import com.omkarcodes.movee.utils.PrefManager
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -152,13 +153,15 @@ class DetailFragment : Fragment(R.layout.fragment_detail), MyRecomAdapter.OnMovi
     }
 
     override fun onMyRecomClick(movie: RecMovie, type: String, binding: ItemMovieBinding) {
+        val prefs = context?.let { PrefManager(it) }
+        prefs?.updateIds(movie.movieId,movie.tmdbId)
         findNavController().navigate(R.id.detailFragment,Bundle().apply {
             putInt("id",movie.tmdbId)
             putString("type",args.type)
         })
     }
 
-    override fun onMyRecomClick(
+    override fun onTmdbRecomClick(
         movie: com.omkarcodes.movee.ui.detail.models.Result,
         type: String,
         binding: ItemMovieBinding

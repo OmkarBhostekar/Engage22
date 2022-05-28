@@ -37,12 +37,12 @@ class TmdbRecomAdapter(
                     .into(binding.ivPoster)
             binding.tvMovieTitle.text = list[position].title
             binding.root.setOnClickListener {
-                listener.onMyRecomClick(list[position],type,binding)
+                listener.onTmdbRecomClick(list[position],type,binding)
             }
         }
     }
 
     interface OnMovieClick{
-        fun onMyRecomClick(movie: Result,type: String,binding: ItemMovieBinding)
+        fun onTmdbRecomClick(movie: Result,type: String,binding: ItemMovieBinding)
     }
 }

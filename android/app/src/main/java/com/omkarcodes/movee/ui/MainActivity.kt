@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            tabLayout.addTab(tabLayout.newTab().apply { text = "Home" })
+            tabLayout.addTab(tabLayout.newTab().apply { text = "Discover" })
             tabLayout.addTab(tabLayout.newTab().apply { text = "For You" })
             tabLayout.addTab(tabLayout.newTab().apply { text = "Watchlist" })
 

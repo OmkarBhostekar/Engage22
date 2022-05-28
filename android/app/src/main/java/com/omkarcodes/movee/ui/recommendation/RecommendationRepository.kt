@@ -9,4 +9,8 @@ class RecommendationRepository @Inject constructor(
     suspend fun getTopRated() = api.getTopRated()
 
     suspend fun getContentBased(movieId: Int) = api.getContentBased(movieId)
+
+    suspend fun getCfRecom(movieId: Int) = api.getCfRecom(movieId)
+
+    suspend fun getByGenres(genre: String) = api.getByGenres(genre)
 }

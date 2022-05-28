@@ -14,4 +14,14 @@ interface RecommendationApi {
     suspend fun getContentBased(
         @Query("tmdbId") movieId: Int
     ) : Response<List<RecMovie>>
+
+    @GET("movie/cf-recommendation")
+    suspend fun getCfRecom(
+        @Query("movieId") movieId: Int
+    ) : Response<List<RecMovie>>
+
+    @GET("movie/")
+    suspend fun getByGenres(
+        @Query("genre") genre: String
+    ) : Response<List<RecMovie>>
 }
